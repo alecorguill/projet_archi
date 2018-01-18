@@ -1,0 +1,63 @@
+###### Analyse non optimisées ######
+SIZE = 10 : 1385031120678811229749248.000000
+
+
+SIZE = 300
+
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 99.87     28.16    28.16      300     0.09     0.09  prod
+  0.32     28.25     0.09                             main
+  0.29     28.33     0.08      300     0.00     0.00  sum
+  0.00     28.33     0.00        1     0.00    28.24  prodpoly
+
+
+			Call graph
+
+
+granularity: each sample hit covers 2 byte(s) for 0.04% of 28.33 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]    100.0    0.09   28.24                 main [1]
+                0.00   28.24       1/1           prodpoly [2]
+-----------------------------------------------
+                0.00   28.24       1/1           main [1]
+[2]     99.7    0.00   28.24       1         prodpoly [2]
+               28.16    0.00     300/300         prod [3]
+                0.08    0.00     300/300         sum [4]
+-----------------------------------------------
+               28.16    0.00     300/300         prodpoly [2]
+[3]     99.4   28.16    0.00     300         prod [3]
+-----------------------------------------------
+                0.08    0.00     300/300         prodpoly [2]
+[4]      0.3    0.08    0.00     300         sum [4]
+-----------------------------------------------
+
+
+Index by function name
+
+   [1] main                    [2] prodpoly
+   [3] prod                    [4] sum
+
+
+(GCC) : 
+       O0 : 28.355 s
+       O1 : 8.366 s
+       O2 : 7.712 s
+       O3 : 2.692 s
+(CLANG) : 22.391 s
+(g++) : 28.220 s
+
+2) 
+CHOIX : O3 SIZE=300, on verra
+
+fuites mémoires
+
+Localité données
+Boucle faire nimporte comment mauvaise localité
+
+BLOC taille 64
