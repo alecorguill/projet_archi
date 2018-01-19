@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-#define SIZE 200
+#define SIZE 8
 
 void prod(float *a,float *b,float *tmp)  {
   int i,j,k;

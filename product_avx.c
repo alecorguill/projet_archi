@@ -36,7 +36,12 @@ void prod(float *a,float *b,float *tmp)  {
 	      __m256 bk = _mm256_set_ps(b[k*SIZE+j+7],b[k*SIZE+j+6],b[k*SIZE+j+5],
 					b[k*SIZE+j+4],b[k*SIZE+j+3],b[k*SIZE+j+2],
 					b[k*SIZE+j+1],b[k*SIZE+j]); 
-
+	      
+	      /* __m256 tmpk = _mm256_set_ps(tmp[i*SIZE+j+7],tmp[i*SIZE+j+6],tmp[i*SIZE+j+5], */
+	      /* 				tmp[i*SIZE+j+4],tmp[i*SIZE+j+3],tmp[i*SIZE+j+2], */
+	      /* 				tmp[i*SIZE+j+1],tmp[i*SIZE+j]);  */
+	      
+	      /* __m256 res = _mm256_fmadd_ps(aik,bk,tmpk); */
 	      __m256 res = _mm256_mul_ps(aik,bk);
 	      float store[8];
 	      _mm256_store_ps(store,res);
